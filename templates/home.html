@@ -1,0 +1,20 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Auth0 Example</title>
+</head>
+<body>
+{% if session %}
+    <h1>Welcome {{ session.userinfo.name }}!</h1>
+    <p><a href="/logout">Logout</a></p>
+{% else %}
+    <h1>Welcome Guest</h1>
+    <p><a href="/login">Login</a></p>
+{% endif %}
+<form action="/comments" method="post">
+    <label for="is_safe">Prevent XSS attack?</label>
+    <input type="checkbox" name="is_safe" id="is_safe"><br>
+    <input type="submit" value="Comments">
+</form>
+</body>
+</html>
