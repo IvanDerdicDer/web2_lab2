@@ -11,10 +11,38 @@
     <h1>Welcome Guest</h1>
     <p><a href="/login">Login</a></p>
 {% endif %}
-<form action="/comments" method="post">
+<form action="/toggle_xss" method="post">
     <label for="is_safe">Prevent XSS attack?</label>
-    <input type="checkbox" name="is_safe" id="is_safe"><br>
-    <input type="submit" value="Comments">
+    <input type="checkbox" name="is_safe" id="is_safe" checked><br>
+    <input type="submit" value="Set XSS">
 </form>
+
+<form action="/break_or_make" method="post">
+    <label for="is_safe">Disable broken authorization?</label>
+    <input type="checkbox" name="is_safe" id="is_safe" checked><br>
+    <input type="submit" value="Break or Make">
+</form>
+
+<form action="/add_comment" method="post">
+    <label for="comment">Comment: </label>
+    <input type="text" name="comment" id="comment" value="Placeholder"><br>
+    <input type="Submit" value="Comment">
+</form>
+
+<h2>Comments</h2>
+{% for comment in comments %}
+    <div>
+    {% if xss_toggle %}
+        {{ comment }}
+    {% else %}
+        {{ comment | safe }}
+    {% endif %}
+    </div>
+{% endfor%}
+
+{% if is_auth %}
+    <p><a href="/delete_comments">Delete all comments</a></p>
+{% endif %}
+
 </body>
 </html>

@@ -20,5 +20,10 @@
         {% endif %}
     {% endfor %}
 {% endif %}
+
+{% if is_auth %}
+    <p><a href="/delete_comments">Delete all comments</a></p>
+{% endif %}
+
 </body>
 </html>
