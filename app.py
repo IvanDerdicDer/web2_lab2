@@ -115,4 +115,19 @@ def delete_comments():
 
 
 if __name__ == '__main__':
-    app.run()
+    url = env.get("RENDER_EXTERNAL_URL")
+    port = env.get('PORT')
+
+    if url:
+        url = '127.0.0.1'
+
+    if port:
+        port = int(port)
+
+    if not url:
+        url = None
+
+    if not port:
+        port = None
+
+    app.run(host=url, port=port)
