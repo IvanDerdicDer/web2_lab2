@@ -1,14 +1,10 @@
-from datetime import datetime
-from enum import Enum, auto
-from functools import wraps
-from itertools import count
 from os import environ as env
-from typing import Generator
+from os import environ as env
 from urllib.parse import quote_plus, urlencode
 
 from authlib.integrations.flask_client import OAuth
 from dotenv import find_dotenv, load_dotenv
-from flask import Flask, redirect, render_template, session, url_for, jsonify, request
+from flask import Flask, redirect, render_template, session, url_for, request
 
 comments_list = ['<script>alert("XSS attack has happened")</script>']
 break_or_make_var = None
